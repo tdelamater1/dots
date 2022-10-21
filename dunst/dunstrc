@@ -1,0 +1,28 @@
+# example : /etc/dunst/dunstrc
+
+[global]
+    width = 500
+    height = 500
+    offset = 10x35
+    notification_limit = 0
+    frame_width = 2
+    font = JetBrainsMono NF 14
+    min_icon_size = 16
+    max_icon_size = 32
+    foreground = "#61afef"
+    background = "#282c34"
+    transparency = 0
+    enable_recursive_icon_lookup = true
+    icon_theme = Papirus-Dark
+
+[urgency_low]
+    frame_color = "#282c34"
+    timeout = 7
+
+[urgency_normal]
+    frame_color = "#e5c07b"
+    timeout = 10
+
+[urgency_critical]
+    frame_color = "#e06c75"
+    timeout = 0
