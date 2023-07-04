@@ -42,7 +42,7 @@ end
 --    red:     '#e06c75'
 --    green:   '#98c379'
 --    yellow:  '#e5c07b'
---    blue:    '#e09d6c'
+--    blue:    '#61afef'
 --    magenta: '#c678dd'
 --    cyan:    '#56b6c2'
 --    white:   '#BBBBBB'
@@ -55,7 +55,7 @@ local colors = {
   -- color5 = "#3e4451", --also black
   color5 = "#202124", --also black
   color13 = "#98c379",--green
-  color10 = "#e09d6c",--blue
+  color10 = "#61afef",--blue
   color8 = "#e06c75", --red
   color9 = "#bbbbbb", --less black
 }
