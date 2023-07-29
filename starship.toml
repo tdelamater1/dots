@@ -1,12 +1,12 @@
 #Change the default prompt format
 format = """\
-[╭╴](#e09d6c)$env_var\
-$all[╰─](#e09d6c)$character"""
+[╭╴](#61afef)$env_var\
+$all[╰─](#61afef)$character"""
 # 
 # Change the default prompt characters
 [character]
-success_symbol = "[](#e09d6c)"
-error_symbol = "[](#e09d6c)"
+success_symbol = "[](#61afef)"
+error_symbol = "[](#61afef)"
 
 [directory]
 truncation_length = 5
@@ -14,7 +14,7 @@ truncation_symbol = "…/"
 home_symbol = " ~"
 read_only_style = "197"
 read_only = "  "
-format = "[$path](#e09d6c)[$read_only]($read_only_style) "
+format = "[$path](#61afef)[$read_only]($read_only_style) "
 
 [python]
 format = "[ $version]($style) "

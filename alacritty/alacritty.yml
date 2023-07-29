@@ -13,7 +13,7 @@
   #TERM: xterm-256color
 
 window:
-  opacity: 0.97
+  opacity: 0.85
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -164,7 +164,7 @@ font:
 colors:
   # Default colors
   primary:
-    background: '#202124'
+    background: '#1a1a1a'
     foreground: '#d3d7de'
 
     # Bright and dim foreground colors
@@ -206,7 +206,7 @@ colors:
     red:     '#e06c75'
     green:   '#98c379'
     yellow:  '#e5c07b'
-    #blue:    '#e09d6c'  #halloween version
+    #blue:    '#61afef'  #halloween version
     blue:    '#61afef'
     magenta: '#c678dd'
     cyan:    '#56b6c2'
@@ -288,14 +288,16 @@ colors:
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
 
-#cursor:
-  # Cursor style
+cursor:
+  style:
+    shape: Underline 
+  vi_mode_style:
+    shape: Block
   #
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  #style: Block
 
   # Vi mode cursor style
   #

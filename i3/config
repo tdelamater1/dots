@@ -4,7 +4,7 @@
 
 set $mod Mod4
 set $mod3 Mod3
-exec --no-startup-id setxkbmap -option caps:hyper
+#exec --no-startup-id setxkbmap -option caps:hyper
 exec --no-startup-id /home/td/.config/i3/startup.sh
 #exec --no-startup-id nitrogen --restore
 #exec --no-startup-id picom
@@ -32,9 +32,15 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+#copyq is nice
+exec --no-startup-id flatpak run com.github.hluk.copyq
+
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
+
+#exec --no-startup-id sleep 2 && flatpak run org.kde.kdeconnect
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -53,6 +59,8 @@ bindsym $mod+Return exec alacritty
 #open a browser
 bindsym $mod+apostrophe exec flatpak run org.chromium.Chromium
 
+bindsym $mod+c exec flatpak run com.github.hluk.copyq show 
+
 # kill focused window
 bindsym $mod+w kill
 
@@ -68,6 +76,8 @@ bindsym $mod+p exec --no-startup-id /home/td/.config/rofi/launchers/type-2/launc
 
 bindsym $mod+0 exec --no-startup-id /home/td/.config/i3/brightness_up.sh
 bindsym $mod+9 exec --no-startup-id /home/td/.config/i3/brightness_down.sh
+bindsym $mod+o exec --no-startup-id /home/td/.local/bin/fs-ocr.sh
+bindsym $mod+g exec --no-startup-id /usr/bin/gromit-mpx --key F1 --undo-key F2
 
 # change focus
 bindsym $mod3+h focus left
@@ -94,10 +104,11 @@ bindsym $mod3+Shift+Up move up
 bindsym $mod3+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+z split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
+
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -136,6 +147,9 @@ set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod3+a workspace number $ws1; layout tabbed
@@ -145,6 +159,9 @@ bindsym $mod3+space workspace number $ws4
 bindsym $mod3+1 workspace number $ws5
 bindsym $mod3+2 workspace number $ws6
 bindsym $mod3+3 workspace number $ws7
+bindsym $mod3+4 workspace number $ws8
+bindsym $mod3+5 workspace number $ws9
+bindsym $mod3+6 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod3+Shift+a move container to workspace $ws1
@@ -154,25 +171,47 @@ bindsym $mod3+Shift+space move container to workspace $ws4
 bindsym $mod3+Shift+1 move container to workspace $ws5
 bindsym $mod3+Shift+2 move container to workspace $ws6
 bindsym $mod3+Shift+3 move container to workspace $ws7
+bindsym $mod3+Shift+4 move container to workspace $ws8
+bindsym $mod3+Shift+5 move container to workspace $ws9
+bindsym $mod3+Shift+6 move container to workspace $ws10
 
 #tell programs where to open
 #exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/td/.i3/workspace-1.json'"
 assign [class="Microsoft Teams"] $ws1
 assign [class="Slack"] $ws1
-assign [instance="crx_pkooggnaalmfkidjmlhoelhdllpphaga"] $ws1
+assign [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] $ws1
 assign [class="Chromium"] $ws3
 assign [class="jetbrains"] $ws4
+assign [class="obsidian"] $ws5
+
+for_window [class=Floating] floating enable, border normal
+for_window [class=org.gnome.Weather] floating enable, border pixel 0, resize set 900 700 
+for_window [class=Pavucontrol] floating enable, border normal
+
+#for_window [class=Floating] floating enable, border normal, resize set 1300 1000
+#for_window [class=org.gnome.Weather] floating enable, border pixel 0, resize set 1300 1000 
+#for_window [class=Pavucontrol] floating enable, border normal, resize set 1300 1000
+
+# Inner gaps for all windows: space between two adjacent windows (or split containers).
+gaps inner 0 
+
+gaps outer 0
+
+# Only enable outer gaps when there is exactly one window or split container on the workspace.
+smart_gaps on
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # lock screen
-bindsym $mod+x exec i3lock -c 202124
+bindsym $mod+x exec i3lock -c 1a1a1a
 # system suspend
 bindsym $mod+Shift+x exec --no-startup-id systemctl suspend
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+s exec --no-startup-id /home/td/.config/i3/toggle_laptop_dock.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -198,14 +237,14 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #202124 #202124 #e6c07b #292d2e   #242429
-client.focused_inactive #202124 #202124 #888888 #292d2e   #242429
-client.unfocused        #202124 #202124 #888888 #292d2e   #242529
+client.focused          #1a1a1a #1a1a1a #e6c07b #292d2e   #242429
+client.focused_inactive #1a1a1a #1a1a1a #888888 #292d2e   #242429
+client.unfocused        #1a1a1a #1a1a1a #888888 #292d2e   #242529
 client.urgent           #2f343a #e06c75 #282c34 #292d2e   #242529
-client.placeholder      #202124 #202124 #888888 #292d2e   #242529
+client.placeholder      #1a1a1a #1a1a1a #888888 #292d2e   #242529
 
-client.background       #202124
+client.background       #1a1a1a
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # timing seems to matter so lets set the keybindings last
-exec_always --no-startup-id xmodmap ~/.Xmodmap
+#exec_always --no-startup-id xmodmap ~/.Xmodmap
