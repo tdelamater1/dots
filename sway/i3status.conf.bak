@@ -1,0 +1,52 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+    colors = true
+    interval = 5
+    color_good = "#98c379"
+    color_degraded = "#e5c07b"
+    color_bad = "#e06c75"
+    markup = "pango"
+}
+#general {
+#    ...
+#    markup = "pango"
+#}
+#wireless _first_ {
+#    format_up = "<span size='small' font_weight='light'></span> %quality at %essid (%ip)"
+#    format_down = "<span size='small' font_weight='light'></span> Down"
+#}
+
+
+#order += "disk /"
+#order += "wireless _first_"
+order += "battery all"
+order += "load"
+order += "tztime local"
+
+#wireless _first_ {
+#        format_up = "<span size='small' font_weight='light'> (%quality at %essid) %ip</span>"
+#        format_down = "<span size='small' font_weight='light'> down</span>"
+#}
+
+battery all {
+        format = "<span size='small' font_weight='light'>B %percentage %remaining</span>"
+}
+
+tztime local {
+        format = "<span size='small' font_weight='light'>%Y-%m-%d %H:%M</span>"
+}
+
+load {
+        format = "<span size='small' font_weight='light'>L %1min</span>"
+}
+
+#disk "/" {
+#        format = "<span size='small' font_weight='light'>%avail</span>"
+#}
