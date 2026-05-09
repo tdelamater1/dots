@@ -25,9 +25,8 @@ get_icon() {
     echo $icon
 }
 
-#get your own key at openweathermap.org
-KEY=""
-CITY=""
+KEY="d597185b1b0dfcdaed844bbad3a3b831"
+CITY="Dallas"
 UNITS="imperial"
 SYMBOL="°"
 

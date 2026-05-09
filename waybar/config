@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/media", "memory", "cpu", "disk", "custom/weather", "pulseaudio", "battery#bat2", "battery", "network", "tray"],
+    "modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio", "battery#bat2", "battery", "network", "tray"],
     // Modules configuration
      "sway/workspaces": {
          "disable-scroll": true,
@@ -14,13 +14,19 @@
          "all-outputs": true,
          "format": "  {icon}  ",
          //"format":"{icon}",
+         "persistent-workspaces": {
+             "1": [],
+             "2": [],
+             "3": [],
+             "4": [],
+             "5": []
+         },
          "format-icons": {
              "1": "",
              "2": "",
              "3": "",
              "4": "",
-             "5": "",
-             "focused": "",
+             "5": "",
              "default": ""
          }
      },
@@ -40,17 +46,21 @@
     },
     "clock": {
         "format-alt": "{:%Y-%m-%d %H:%M}",
-        "format": "{:%B %d %H:%M}"
+        //"format": "{:%B %d %H:%M}"
+        "format": "{:%A %b %d  %I:%M %p}"
     },
     "memory": {
-        "format": "{}% "
+        "format": "RAM {}% ",
+        "on-click": "alacritty --class=btop -e btop"
     },
     "cpu": {
-        "format": "{usage}% "
+        "format": "CPU {usage}% ",
+        "on-click": "alacritty --class=btop -e btop"
     },
     "disk": {
 	      "interval": 30,
-	      "format": "{percentage_free}%   ",
+	      "format": "DISK {percentage_used}%   ",
+        "on-click": "alacritty --class=btop -e btop"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -84,7 +94,9 @@
         "format-wifi": " ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠",
-        "interval" : 7
+        "interval" : 7,
+        "on-click": "alacritty --class nmtui -e nmtui"
+
     },
     "pulseaudio": {
         //"scroll-step": 1,
@@ -111,6 +123,7 @@
         "tooltip": true,
         "interval": 600,
         "exec": "$HOME/.config/waybar/modules/weather.py",
-        "return-type": "json"
+        "return-type": "json",
+        "on-click": "flatpak run org.gnome.Weather"
     }
 }

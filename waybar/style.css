@@ -1,3 +1,4 @@
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
   
@@ -59,7 +60,7 @@ button:hover {
     padding: 0 5px;
     background-color: transparent;
     color: #bbbbbb;
-}
+  }
 
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
@@ -67,16 +68,15 @@ button:hover {
 
 #workspaces button.focused {
     background-color: #1a1a1a;
-    box-shadow: inset 0 -3px #bbbbbb;
+    box-shadow: inset 0 -3px #61afef;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: #e06c75;
 }
 
 #mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #bbbbbb;
+    background-color: #e06c75;
 }
 
 #clock,
@@ -134,7 +134,7 @@ button:hover {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+    background-color: #e06c75;
     color: #bbbbbb;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -147,11 +147,11 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu {
+#memory {
     background-color: #1a1a1a;
 }
 
-#memory {
+#cpu {
     background-color: #1a1a1a;
 }
 
@@ -160,7 +160,8 @@ label:focus {
 }
 
 #backlight {
-    background-color: #90b1b1;
+    background-color: #1a1a1a;
+    color: #e5c07b;
 }
 
 #network {
@@ -168,7 +169,8 @@ label:focus {
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: #1a1a1a;
+    color: #e6c07b;
 }
 
 #pulseaudio {
@@ -176,17 +178,17 @@ label:focus {
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: #1a1a1a;
+    color: #c678dd;
 }
 
 #wireplumber {
-    background-color: #fff0f5;
+    background-color: #1a1a1a;
     color: #000000;
 }
 
 #wireplumber.muted {
-    background-color: #f53c3c;
+    background-color: #1a1a1a;;
 }
 
 #custom-media {

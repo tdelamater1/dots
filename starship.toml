@@ -1,12 +1,12 @@
 #Change the default prompt format
 format = """\
-[╭╴](#61afef)$env_var\
-$all[╰─](#61afef)$character"""
+(#61afef)$env_var\
+$all(#61afef)$character"""
 # 
 # Change the default prompt characters
 [character]
-success_symbol = "[](#61afef)"
-error_symbol = "[](#61afef)"
+success_symbol = "[](#c678dd)"
+error_symbol = "[](#e06c75)"
 
 [directory]
 truncation_length = 5

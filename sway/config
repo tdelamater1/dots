@@ -3,15 +3,16 @@ set $mod Mod4
 set $mod3 Mod3
 
 input * xkb_layout "hpdevone"
-output * bg /home/td/Pictures/wallpapers/red_tree.png fill
+#output * bg /home/td/Pictures/wallpapers/red_tree.png fill
+output * bg /home/td/Pictures/wallpapers/5CJF6u8.jpeg fill
+exec_always --no-startup-id /home/td/.config/sway/startup.sh
+exec_always --no-startup-id /home/td/.config/sway/theme.sh
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 for_window [tiling] border pixel 0
-
-bindsym Mod4+Shift+p exec grimshot save area
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -23,18 +24,21 @@ font pango:JetBrainsMono NF 11
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id dex --autostart --environment sway
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# xss-lock grabs a logind suspend inhibit lock and will use swaylock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- swaylock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+exec nm-applet
+
+exec --no-startup-id flatpak run --socket=wayland com.github.hluk.copyq
+exec --no-startup-id dunst
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -51,12 +55,13 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 #open a browser
-bindsym $mod+apostrophe exec firefox
+bindsym $mod+apostrophe exec flatpak run org.chromium.Chromium 
 
 # kill focused window
 bindsym $mod+w kill
 
 bindsym $mod+p exec --no-startup-id /home/td/.config/rofi/launchers/type-2/launcher.sh
+bindsym $mod+Shift+p exec grimshot save area
 bindsym $mod+0 exec --no-startup-id /home/td/.config/sway/brightness_up.sh
 bindsym $mod+9 exec --no-startup-id /home/td/.config/sway/brightness_down.sh
 
@@ -150,31 +155,37 @@ assign [class="Firefox"] $ws3
 assign [class="jetbrains"] $ws4
 assign [class="obsidian"] $ws5
 
-for_window [class=Floating] floating enable, border normal
-for_window [class=org.gnome.Weather] floating enable, border pixel 0, resize set 900 700 
-for_window [class=Pavucontrol] floating enable, border normal
+for_window [app_id=org.gnome.Weather] floating enable, border pixel 5 
+for_window [app_id=pavucontrol] floating enable, border normal 
+for_window [app_id=qalculate-gtk] floating enable, border pixel 5 
+for_window [app_id=btop] floating enable, border pixel 5 
+for_window [app_id=nmtui] floating enable, border pixel 5 
+
 
 #for_window [class=Floating] floating enable, border normal, resize set 1300 1000
 #for_window [class=org.gnome.Weather] floating enable, border pixel 0, resize set 1300 1000 
 #for_window [class=Pavucontrol] floating enable, border normal, resize set 1300 1000
 
 # Inner gaps for all windows: space between two adjacent windows (or split containers).
-gaps inner 5 
+gaps inner 12 
 
-gaps outer 5
-
+gaps outer 2
+ 
 # Only enable outer gaps when there is exactly one window or split container on the workspace.
 smart_gaps on
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart sway inplace (preserves your layout/session
 bindsym $mod+Shift+r restart
 # lock screen
 bindsym $mod+x exec swaylock -c 1a1a1a
 # system suspend
 bindsym $mod+Shift+x exec --no-startup-id systemctl suspend
-# exit i3 (logs you out of your X session)
+
+bindsym $mod+Shift+q exec swaynag -t warning -m 'Do you really want to exit sway? This will end your session.' -b 'Yes, exit' 'swaymsg exit'
+# toggle laptop dock
+bindsym $mod+Shift+s exec --no-startup-id /home/td/.config/sway/toggle_laptop_dock.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

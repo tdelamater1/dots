@@ -79,6 +79,23 @@ bindsym $mod+9 exec --no-startup-id /home/td/.config/i3/brightness_down.sh
 bindsym $mod+o exec --no-startup-id /home/td/.local/bin/fs-ocr.sh
 bindsym $mod+g exec --no-startup-id /usr/bin/gromit-mpx --key F1 --undo-key F2
 
+# NumLock OFF then a numpad key:
+# 7 9
+bindsym KP_Home workspace prev
+bindsym KP_Prior workspace next
+# 4 6
+bindsym KP_Left move left
+bindsym KP_Right move right
+# 5
+bindsym KP_Begin [urgent=latest] focus
+# 8 2
+bindsym KP_Up nop
+bindsym KP_Down nop
+# 1 3
+bindsym KP_End nop
+bindsym KP_Next nop
+
+
 # change focus
 bindsym $mod3+h focus left
 bindsym $mod3+j focus down
