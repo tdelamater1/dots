@@ -5,7 +5,7 @@ set $mod3 Mod3
 input * xkb_layout "hpdevone"
 #output * bg /home/td/Pictures/wallpapers/red_tree.png fill
 output * bg /home/td/Pictures/wallpapers/5CJF6u8.jpeg fill
-exec_always --no-startup-id /home/td/.config/sway/startup.sh
+exec pkill kanshi; kanshi
 exec_always --no-startup-id /home/td/.config/sway/theme.sh
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -31,7 +31,7 @@ exec --no-startup-id dex --autostart --environment sway
 
 # xss-lock grabs a logind suspend inhibit lock and will use swaylock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- swaylock --nofork
+exec swayidle -w before-sleep 'swaylock -c 1a1a1a'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -41,11 +41,10 @@ exec --no-startup-id flatpak run --socket=wayland com.github.hluk.copyq
 exec --no-startup-id dunst
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -61,7 +60,7 @@ bindsym $mod+apostrophe exec flatpak run org.chromium.Chromium
 bindsym $mod+w kill
 
 bindsym $mod+p exec --no-startup-id /home/td/.config/rofi/launchers/type-2/launcher.sh
-bindsym $mod+Shift+p exec grimshot save area
+bindsym $mod+Shift+p exec bash -c 'grimshot --notify savecopy area ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png'
 bindsym $mod+0 exec --no-startup-id /home/td/.config/sway/brightness_up.sh
 bindsym $mod+9 exec --no-startup-id /home/td/.config/sway/brightness_down.sh
 
@@ -155,11 +154,12 @@ assign [class="Firefox"] $ws3
 assign [class="jetbrains"] $ws4
 assign [class="obsidian"] $ws5
 
-for_window [app_id=org.gnome.Weather] floating enable, border pixel 5 
-for_window [app_id=pavucontrol] floating enable, border normal 
-for_window [app_id=qalculate-gtk] floating enable, border pixel 5 
-for_window [app_id=btop] floating enable, border pixel 5 
-for_window [app_id=nmtui] floating enable, border pixel 5 
+for_window [app_id=org.gnome.Weather] floating enable, border pixel 5
+for_window [app_id=pavucontrol] floating enable, border normal
+for_window [app_id=qalculate-gtk] floating enable, border pixel 5
+for_window [app_id=btop] floating enable, border pixel 5
+for_window [app_id=nmtui] floating enable, border pixel 5
+for_window [app_id=cheatsheet] floating enable, border pixel 2, resize set width 680 height 960, move position center
 
 
 #for_window [class=Floating] floating enable, border normal, resize set 1300 1000
@@ -177,7 +177,7 @@ smart_gaps on
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart sway inplace (preserves your layout/session
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r reload
 # lock screen
 bindsym $mod+x exec swaylock -c 1a1a1a
 # system suspend
@@ -209,6 +209,9 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# keybinding cheatsheet
+bindsym $mod+slash exec alacritty --class cheatsheet -e /home/td/.config/sway/cheatsheet.sh
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #1a1a1a #1a1a1a #e6c07b #292d2e   #242429
