@@ -20,14 +20,50 @@ require("lazy").setup({
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = {
-    }
+    config = function()
+      local wk = require("which-key")
+      wk.setup({})
+      wk.add({
+        { "<leader>e",  desc = "File explorer" },
+        { "<leader>f",  group = "find" },
+        { "<leader>ff", desc = "Find files" },
+        { "<leader>fg", desc = "Live grep" },
+        { "<leader>fp", desc = "Projects" },
+        { "<leader>fb", desc = "Buffers" },
+        { "<leader>fh", desc = "Help tags" },
+        { "<leader>fs", desc = "Git files" },
+        { "<leader>h",  desc = "Clear highlights" },
+        { "<leader>m",  desc = "Delete mark m" },
+        { "<leader>M",  desc = "Delete mark M" },
+        { "-",          desc = "Open parent dir (oil)" },
+        { "<C-h>",      desc = "Window left",     mode = "n" },
+        { "<C-j>",      desc = "Window down",     mode = "n" },
+        { "<C-k>",      desc = "Window up",       mode = "n" },
+        { "<C-l>",      desc = "Window right",    mode = "n" },
+        { "<C-Up>",     desc = "Shrink height",   mode = "n" },
+        { "<C-Down>",   desc = "Grow height",     mode = "n" },
+        { "<C-Left>",   desc = "Shrink width",    mode = "n" },
+        { "<C-Right>",  desc = "Grow width",      mode = "n" },
+        { "<S-l>",      desc = "Next buffer",     mode = "n" },
+        { "<S-h>",      desc = "Previous buffer", mode = "n" },
+        { "<S-q>",      desc = "Close buffer",    mode = "n" },
+      })
+    end,
   },
   {'nvim-telescope/telescope.nvim', tag = '0.1.2', dependencies = { 'nvim-lua/plenary.nvim' }},
-  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  {
+    'stevearc/oil.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('oil').setup({
+        view_options = { show_hidden = true },
+      })
+      vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>",           { desc = "File explorer" })
+      vim.keymap.set("n", "-",         "<cmd>Oil<CR>",           { desc = "Open parent dir (oil)" })
+    end,
+  },
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
   'nvim-lualine/lualine.nvim',
-  'github/copilot.vim',
   {
     'RRethy/nvim-base16',
     lazy = false,
@@ -41,13 +77,10 @@ require("lazy").setup({
         })
      end,
   },
-  { 
-      'lervag/vimtex',
-      config = function ()
-          vim.g.vimtex_compiler_method = 'latexmk'
-          vim.g.vimtex_view_method = 'zathura'
-          vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
-      end,
+}, {
+  performance = {
+    rtp = {
+      paths = { "/usr/lib/nvim" },
+    },
   },
-
 })
