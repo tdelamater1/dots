@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "One Dark 1a",
+  "version": "1.0",
+  "theme": {
+    "colors": {
+      "frame":               [26, 26, 26],
+      "frame_inactive":      [26, 26, 26],
+      "toolbar":             [26, 26, 26],
+      "tab_text":            [229, 192, 123],
+      "tab_background_text": [102, 102, 102],
+      "bookmark_text":       [187, 187, 187],
+      "ntp_background":      [26, 26, 26],
+      "ntp_text":            [187, 187, 187],
+      "ntp_link":            [97, 175, 239]
+    },
+    "tints": {
+      "buttons": [0, 0, 0.73]
+    },
+    "properties": {
+      "ntp_logo_alternate": 1
+    }
+  }
+}

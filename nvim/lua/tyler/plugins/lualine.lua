@@ -38,6 +38,13 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local oil_dir = function()
+  local ok, oil = pcall(require, "oil")
+  if not ok then return "" end
+  local dir = oil.get_current_dir()
+  return dir and ("  " .. dir) or ""
+end
+
 --    black:   '#282c34'
 --    red:     '#e06c75'
 --    green:   '#98c379'
@@ -97,7 +104,7 @@ lualine.setup {
   sections = {
     lualine_a = { "mode" },
     lualine_b = {"branch"},
-    lualine_c = { diagnostics },
+    lualine_c = { diagnostics, oil_dir },
     lualine_x = { diff, spaces, "encoding", filetype },
     lualine_y = { "location" },
     lualine_z = { "progress" },

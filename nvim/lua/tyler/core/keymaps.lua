@@ -29,8 +29,9 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts) -- shrink horizontally
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts) -- grow horizontally
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts) -- next buffer
-keymap("n", "<S-h>", ":bprevious<CR>", opts) -- previous buffer
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-q>", ":bdelete<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts) -- clear highlights
@@ -56,8 +57,6 @@ keymap("n", "<leader>M", ":delm M<CR>", opts) -- delete the m mark
 
 -- Plugins --
 
--- NvimTree
--- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle tree view
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts) -- find files

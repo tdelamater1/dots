@@ -2,8 +2,10 @@
 
 [global]
     width = 500
-    height = 500
-    offset = 10x35
+    height = (0, 500)
+    offset = (10, 35)
+    origin = top-right
+    follow = mouse
     notification_limit = 0
     frame_width = 2
     font = JetBrainsMono NF 14

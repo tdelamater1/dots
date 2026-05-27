@@ -40,3 +40,20 @@ vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
 vim.opt.spelllang = "en,cjk"
+
+-- tmux extended-keys re-encodes control chars within bracketed paste.
+-- Handle both xterm modifyOtherKeys and csi-u formats.
+vim.paste = (function(overridden)
+  return function(lines, phase)
+    local fixed = {}
+    for _, line in ipairs(lines) do
+      line = line:gsub("\x1b%[27;5;105~", "\t"):gsub("\x1b%[105;5u", "\t")
+      line = line:gsub("\x1b%[27;5;106~", "\n"):gsub("\x1b%[106;5u", "\n")
+      local parts = vim.split(line, "\n", { plain = true })
+      for _, part in ipairs(parts) do
+        table.insert(fixed, part)
+      end
+    end
+    return overridden(fixed, phase)
+  end
+end)(vim.paste)

@@ -19,3 +19,10 @@ format = "[$path](#61afef)[$read_only]($read_only_style) "
 [python]
 format = "[ $version]($style) "
 style = "bold green"
+
+[java]
+disabled = false
+format = "via [☕ $version](bold green) "
+# Force starship to prioritize your new Debian Java 21 path
+detect_files = ["pom.xml", "build.gradle", "AGENTS.md"]
+

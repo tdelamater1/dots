@@ -3,10 +3,13 @@ set $mod Mod4
 set $mod3 Mod3
 
 input * xkb_layout "hpdevone"
-#output * bg /home/td/Pictures/wallpapers/red_tree.png fill
-output * bg /home/td/Pictures/wallpapers/5CJF6u8.jpeg fill
+output * bg /home/td/Pictures/wallpapers/red_tree_cropped.png fill
+#output * bg /home/td/Pictures/wallpapers/5CJF6u8.jpeg fill
 exec pkill kanshi; kanshi
+exec bash -c 'for i in $(seq 50); do [ "$(cat /sys/class/drm/card0-DP-1/status 2>/dev/null)" = "connected" ] && { sleep 1 && swaymsg output eDP-1 disable; break; }; sleep 0.2; done'
 exec_always --no-startup-id /home/td/.config/sway/theme.sh
+seat seat0 xcursor_theme Breeze_Light 24
+
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
@@ -26,18 +29,11 @@ font pango:JetBrainsMono NF 11
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment sway
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use swaylock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
 exec swayidle -w before-sleep 'swaylock -c 1a1a1a'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec nm-applet
-
-exec --no-startup-id flatpak run --socket=wayland com.github.hluk.copyq
+exec --no-startup-id copyq
 exec --no-startup-id dunst
 
 # Use pactl to adjust volume in PulseAudio.
@@ -122,8 +118,19 @@ set $ws8 8
 set $ws9 9
 set $ws10 10
 
+workspace $ws1 output DP-1 eDP-1
+workspace $ws2 output DP-1 eDP-1
+workspace $ws3 output DP-1 eDP-1
+workspace $ws4 output DP-1 eDP-1
+workspace $ws5 output DP-1 eDP-1
+workspace $ws6 output DP-1 eDP-1
+workspace $ws7 output DP-1 eDP-1
+workspace $ws8 output DP-1 eDP-1
+workspace $ws9 output DP-1 eDP-1
+workspace $ws10 output DP-1 eDP-1
+
 # switch to workspace
-bindsym $mod3+a workspace number $ws1; layout tabbed
+bindsym $mod3+a workspace number $ws1
 bindsym $mod3+s workspace number $ws2
 bindsym $mod3+d workspace number $ws3
 bindsym $mod3+space workspace number $ws4
@@ -147,10 +154,10 @@ bindsym $mod3+Shift+5 move container to workspace $ws9
 bindsym $mod3+Shift+6 move container to workspace $ws10
 
 #tell programs where to open
-assign [class="Microsoft Teams"] $ws1
-assign [class="Slack"] $ws1
-assign [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] $ws1
-assign [class="Firefox"] $ws3
+assign [class="Microsoft Teams"] $ws3
+assign [class="Slack"] $ws3
+assign [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] $ws3
+assign [class="Firefox"] $ws2
 assign [class="jetbrains"] $ws4
 assign [class="obsidian"] $ws5
 
@@ -159,8 +166,8 @@ for_window [app_id=pavucontrol] floating enable, border normal
 for_window [app_id=qalculate-gtk] floating enable, border pixel 5
 for_window [app_id=btop] floating enable, border pixel 5
 for_window [app_id=nmtui] floating enable, border pixel 5
-for_window [app_id=cheatsheet] floating enable, border pixel 2, resize set width 680 height 960, move position center
-
+for_window [app_id=cheatsheet] floating enable, border pixel 2, resize set width 680 height 960, move position center, opacity 1
+for_window [app_id="wshowkeys"] { floating enable; border none; sticky enable }
 
 #for_window [class=Floating] floating enable, border normal, resize set 1300 1000
 #for_window [class=org.gnome.Weather] floating enable, border pixel 0, resize set 1300 1000 
@@ -211,7 +218,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # keybinding cheatsheet
-bindsym $mod+slash exec alacritty --class cheatsheet -e /home/td/.config/sway/cheatsheet.sh
+bindsym $mod+slash exec alacritty -o 'window.opacity=1.0' --class cheatsheet -e /home/td/.config/sway/cheatsheet-search.sh
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #1a1a1a #1a1a1a #e6c07b #292d2e   #242429

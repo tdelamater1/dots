@@ -22,9 +22,9 @@
              "5": []
          },
          "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
+             "1": "",
+             "2": "",
+             "3": "",
              "4": "",
              "5": "",
              "default": ""
@@ -51,16 +51,16 @@
     },
     "memory": {
         "format": "RAM {}% ",
-        "on-click": "alacritty --class=btop -e btop"
+        "on-click": "alacritty --class=btop -e btop -p 2"
     },
     "cpu": {
         "format": "CPU {usage}% ",
-        "on-click": "alacritty --class=btop -e btop"
+        "on-click": "alacritty --class=btop -e btop -p 1"
     },
     "disk": {
 	      "interval": 30,
 	      "format": "DISK {percentage_used}%   ",
-        "on-click": "alacritty --class=btop -e btop"
+        "on-click": "alacritty --class=btop -e btop -p 3"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -124,6 +124,6 @@
         "interval": 600,
         "exec": "$HOME/.config/waybar/modules/weather.py",
         "return-type": "json",
-        "on-click": "flatpak run org.gnome.Weather"
+        "on-click": "gnome-weather"
     }
 }
