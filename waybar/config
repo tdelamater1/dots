@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio", "battery#bat2", "battery", "network", "tray"],
+    "modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio/slider", "pulseaudio", "battery#bat2", "battery", "tray"],
     // Modules configuration
      "sway/workspaces": {
          "disable-scroll": true,
@@ -99,7 +99,7 @@
 
     },
     "pulseaudio": {
-        //"scroll-step": 1,
+        "scroll-step": 1,
         "format": "{icon}{volume}% ",
         "format-bluetooth": "{icon}{volume}% ",
         "format-muted": "",
@@ -113,6 +113,11 @@
             "default": ["", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
     },
     "custom/media": {
         "format": "{}",

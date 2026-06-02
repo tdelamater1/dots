@@ -181,6 +181,34 @@ label:focus {
     background-color: #1a1a1a;
     color: #c678dd;
 }
+#pulseaudio-slider {
+  padding: 0px;
+  margin: 0px;
+  margin-left: 5px;
+}
+
+#pulseaudio-slider slider {
+  all: unset;
+  min-height: 0;
+  min-width: 0;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+  min-height: 8px;
+  min-width: 75px;
+  border-radius: 5px;
+  background: #282c34;
+}
+
+#pulseaudio-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background: #e5c07b;
+}
 
 #wireplumber {
     background-color: #1a1a1a;

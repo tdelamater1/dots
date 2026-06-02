@@ -58,7 +58,7 @@ data = {}
 try:
     weather = requests.get("https://wttr.in/dallas?format=j1", timeout=5).json()
 
-    data['text'] = WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + " " +  weather['current_condition'][0]['temp_F'] + "°   "
+    data['text'] = WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + " " +  weather['current_condition'][0]['temp_F'] + "°    "
         # f"↑ {weather['weather'][0]['maxtempF']}° ↓ {weather['weather'][1]['mintempF']}° "
 except Exception as e:
     data['text'] = "…"

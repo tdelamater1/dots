@@ -3,7 +3,7 @@ set $mod Mod4
 set $mod3 Mod3
 
 input * xkb_layout "hpdevone"
-output * bg /home/td/Pictures/wallpapers/red_tree_cropped.png fill
+output * bg /home/td/Pictures/wallpapers/red_tree_c.png fill
 #output * bg /home/td/Pictures/wallpapers/5CJF6u8.jpeg fill
 exec pkill kanshi; kanshi
 exec bash -c 'for i in $(seq 50); do [ "$(cat /sys/class/drm/card0-DP-1/status 2>/dev/null)" = "connected" ] && { sleep 1 && swaymsg output eDP-1 disable; break; }; sleep 0.2; done'
@@ -154,11 +154,6 @@ bindsym $mod3+Shift+5 move container to workspace $ws9
 bindsym $mod3+Shift+6 move container to workspace $ws10
 
 #tell programs where to open
-assign [class="Microsoft Teams"] $ws3
-assign [class="Slack"] $ws3
-assign [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] $ws3
-assign [class="Firefox"] $ws2
-assign [class="jetbrains"] $ws4
 assign [class="obsidian"] $ws5
 
 for_window [app_id=org.gnome.Weather] floating enable, border pixel 5

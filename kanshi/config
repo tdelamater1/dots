@@ -1,0 +1,10 @@
+profile docked {
+    output "Samsung Electric Company C34J79x HNTW307178" mode 3440x1440@60Hz position 0,0
+    output eDP-1 disable
+    exec killall -SIGUSR2 waybar || true
+}
+
+profile undocked {
+    output eDP-1 mode 1920x1080@60Hz position 0,0
+    exec killall -SIGUSR2 waybar || true
+}

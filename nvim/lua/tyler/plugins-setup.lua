@@ -25,6 +25,8 @@ require("lazy").setup({
       wk.setup({})
       wk.add({
         { "<leader>e",  desc = "File explorer" },
+        { "<leader>c",  group = "code (lsp)" },
+        { "<leader>d",  group = "debug" },
         { "<leader>f",  group = "find" },
         { "<leader>ff", desc = "Find files" },
         { "<leader>fg", desc = "Live grep" },
@@ -64,6 +66,13 @@ require("lazy").setup({
   },
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
   'nvim-lualine/lualine.nvim',
+  -- Go support (configured in lua/tyler/plugins/go.lua)
+  {'nvim-treesitter/nvim-treesitter', branch = 'master', build = ':TSUpdate'},
+  {'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' }},
+  -- Go debugging (configured in lua/tyler/plugins/go.lua)
+  'mfussenegger/nvim-dap',
+  {'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' }},
+  {'leoluz/nvim-dap-go', dependencies = { 'mfussenegger/nvim-dap' }},
   {
     'RRethy/nvim-base16',
     lazy = false,
