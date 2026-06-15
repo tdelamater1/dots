@@ -1,0 +1,48 @@
+[terminal.shell]
+program = "/bin/bash"
+args = ["--login"]
+
+[window]
+opacity = 1
+
+[window.padding]
+x = 0
+y = 7
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "JetBrainsMono NF"
+
+[cursor.style]
+shape = "Underline"
+
+[cursor.vi_mode_style]
+shape = "Block"
+
+[colors.primary]
+background = "#1a1a1a"
+foreground = "#d3d7de"
+
+[colors.normal]
+black   = "#282c34"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#BBBBBB"
+
+[colors.bright]
+black   = "#5c6370"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#BBBBBB"
+
+[terminal]

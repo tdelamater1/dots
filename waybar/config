@@ -7,6 +7,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
     "modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio/slider", "pulseaudio", "battery#bat2", "battery", "tray"],
+    //"modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio/slider", "pulseaudio", "battery#bat2", "battery", "tray", "custom/power"],
     // Modules configuration
      "sway/workspaces": {
          "disable-scroll": true,
@@ -130,5 +131,10 @@
         "exec": "$HOME/.config/waybar/modules/weather.py",
         "return-type": "json",
         "on-click": "gnome-weather"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "$HOME/.config/waybar/modules/powermenu.sh"
     }
 }

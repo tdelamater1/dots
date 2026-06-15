@@ -1,0 +1,18 @@
+default  partial alphanumeric_keys
+xkb_symbols "basic" {
+    // this file goes in /usr/share/X11/xkb/symbols
+    // Makes Caps Lock become the "Hyper" key, and be the Mod3 modifier.
+    // This allows me to easily use Mod3 in the i3 window manager without
+    // messing with `setxkbmap`/`xmodmap`; it even keeps working when
+    // re-plugging the keyboard.
+
+    name[Group1]="English (US) hpdevone";
+    include "us"
+
+    key <CAPS>  { [ Hyper_L ] };
+
+    modifier_map Mod3 { <CAPS> };
+    modifier_map Mod3 { <HYPR> };
+
+    include "level3(ralt_switch_multikey)"
+};

@@ -94,8 +94,19 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#custom-power,
 #mpd {
     padding: 0 10px;
+    color: #bbbbbb;
+}
+
+#custom-power {
+    background-color: #1a1a1a;
+    color: #e06c75;
+    padding-right: 14px;
+}
+
+#custom-power:hover {
     color: #bbbbbb;
 }
 
