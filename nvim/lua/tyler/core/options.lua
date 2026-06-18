@@ -58,3 +58,13 @@ vim.paste = (function(overridden)
     return overridden(fixed, phase)
   end
 end)(vim.paste)
+
+-- LSP Diagnostics Configuration
+vim.diagnostic.config({
+  virtual_text = false,      -- Disable inline text at the end of the line
+  signs = true,             -- Keep icons in the left gutter column
+  underline = true,         -- Keep colored underlines under the errors
+  update_in_insert = false, -- Do not look for errors while you are actively typing
+  float = { border = "rounded" }, -- Add borders to floating diagnostic windows
+})
+

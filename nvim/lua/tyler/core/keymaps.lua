@@ -16,6 +16,11 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- Normal --
+
+-- movement
+keymap("n", "<C-d>", "<C-d>zz", opts) -- window left
+keymap("n", "<C-u>", "<C-u>zz", opts) -- window left
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts) -- window left
 keymap("n", "<C-j>", "<C-w>j", opts) -- window down
@@ -74,3 +79,7 @@ keymap("n", "<leader>fs", "<cmd>Telescope git_files<cr>", opts) -- find under so
 --keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
 -- DAP keymaps live in lua/tyler/plugins/go.lua (set after plugins load)
+
+-- Diagnostics
+keymap("n", "<leader>cd", vim.diagnostic.open_float, { silent = true, desc = "Show line diagnostics" })
+

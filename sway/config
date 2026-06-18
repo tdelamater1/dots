@@ -4,7 +4,6 @@ set $mod3 Mod3
 
 input * xkb_layout "hpdevone"
 output * bg /home/td/Pictures/wallpapers/red_tree_c.png fill
-#output * bg /home/td/Pictures/wallpapers/5CJF6u8.jpeg fill
 exec pkill kanshi; kanshi
 exec bash -c 'for i in $(seq 50); do [ "$(cat /sys/class/drm/card0-DP-1/status 2>/dev/null)" = "connected" ] && { sleep 1 && swaymsg output eDP-1 disable; break; }; sleep 0.2; done'
 exec_always --no-startup-id /home/td/.config/sway/theme.sh
@@ -155,6 +154,9 @@ bindsym $mod3+Shift+6 move container to workspace $ws10
 
 #tell programs where to open
 assign [class="obsidian"] $ws5
+
+# force workspace 5 to use a tabbed layout by default
+for_window [workspace="5"] layout tabbed
 
 for_window [app_id=org.gnome.Weather] floating enable, border pixel 5
 for_window [app_id=pavucontrol] floating enable, border normal

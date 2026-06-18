@@ -80,7 +80,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("K", vim.lsp.buf.hover, "Hover docs")
     map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
-    map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
     map("[d", vim.diagnostic.goto_prev, "Prev diagnostic")
     map("]d", vim.diagnostic.goto_next, "Next diagnostic")
   end,
