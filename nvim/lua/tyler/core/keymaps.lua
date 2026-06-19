@@ -20,6 +20,10 @@ vim.g.mapleader = " "
 -- movement
 keymap("n", "<C-d>", "<C-d>zz", opts) -- window left
 keymap("n", "<C-u>", "<C-u>zz", opts) -- window left
+-- find
+keymap("n", "n", "nzz", opts) -- find next
+keymap("n", "N", "Nzz", opts) -- find previous
+
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts) -- window left
@@ -66,7 +70,6 @@ keymap("n", "<leader>M", ":delm M<CR>", opts) -- delete the m mark
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts) -- find files
 keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts) -- live grep
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts) -- projects
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts) -- buffers
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- help tags
 keymap("n", "<leader>fs", "<cmd>Telescope git_files<cr>", opts) -- find under source control
