@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio/slider", "pulseaudio", "battery#bat2", "battery", "tray"],
+    "modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio/slider", "pulseaudio", "battery#bat2", "battery", "custom/notification", "tray"],
     //"modules-right": ["custom/media", "cpu", "memory", "disk", "custom/weather", "pulseaudio/slider", "pulseaudio", "battery#bat2", "battery", "tray", "custom/power"],
     // Modules configuration
      "sway/workspaces": {
@@ -136,5 +136,25 @@
         "format": "",
         "tooltip": false,
         "on-click": "$HOME/.config/waybar/modules/powermenu.sh"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }

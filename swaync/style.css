@@ -1,0 +1,210 @@
+/*
+ * One Dark Theme for SwayNotificationCenter
+ */
+
+@define-color bg-center #1e222b;
+@define-color bg-noti #282c34;
+@define-color bg-noti-hover #353b45;
+@define-color bg-noti-active #3e4452;
+@define-color fg-main #abb2bf;
+@define-color fg-muted #828997;
+@define-color accent #61afef;
+@define-color red-color #e06c75;
+@define-color green-color #98c379;
+@define-color yellow-color #e5c07b;
+@define-color border-color #3e4452;
+
+* {
+  font-family: "JetBrainsMono NF", "JetBrains Mono", sans-serif;
+  font-size: 14px;
+}
+
+/* Control Center */
+.control-center {
+  background: @bg-center;
+  border: 2px solid @border-color;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  color: @fg-main;
+  padding: 10px;
+  margin: 10px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+/* Widget: Title */
+.widget-title {
+  margin: 8px;
+}
+
+.widget-title > label {
+  font-size: 18px;
+  font-weight: bold;
+  color: @accent;
+}
+
+.widget-title > button {
+  background: @bg-noti;
+  border: 1px solid @border-color;
+  border-radius: 6px;
+  color: @fg-main;
+  padding: 4px 12px;
+}
+
+.widget-title > button:hover {
+  background: @bg-noti-hover;
+  border-color: @accent;
+  color: @accent;
+}
+
+/* Widget: DND (Do Not Disturb) */
+.widget-dnd {
+  margin: 8px;
+  font-size: 1.1rem;
+}
+
+.widget-dnd > switch {
+  background: @bg-noti;
+  border: 1px solid @border-color;
+  border-radius: 12px;
+  padding: 2px;
+}
+
+.widget-dnd > switch:checked {
+  background: @accent;
+  border-color: @accent;
+}
+
+.widget-dnd > switch slider {
+  background: @fg-main;
+  border-radius: 50%;
+  min-height: 16px;
+  min-width: 16px;
+}
+
+.widget-dnd > switch:checked slider {
+  background: @bg-center;
+}
+
+/* Widget: MPRIS */
+.widget-mpris {
+  background: @bg-noti;
+  border: 1px solid @border-color;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px;
+}
+
+.widget-mpris-player {
+  padding: 4px;
+}
+
+.widget-mpris-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: @fg-main;
+}
+
+.widget-mpris-subtitle {
+  font-size: 13px;
+  color: @fg-muted;
+}
+
+.widget-mpris-button {
+  background: transparent;
+  border: none;
+  color: @fg-main;
+}
+
+.widget-mpris-button:hover {
+  color: @accent;
+}
+
+/* Notifications Group & Styling */
+.notification {
+  background: @bg-noti;
+  border: 1px solid @border-color;
+  border-radius: 8px;
+  margin: 8px 0px;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.notification:hover {
+  background: @bg-noti-hover;
+  border-color: @accent;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 2px;
+}
+
+.notification-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: @accent;
+}
+
+.notification-body {
+  font-size: 13px;
+  color: @fg-main;
+  margin-top: 4px;
+}
+
+.notification-time {
+  font-size: 11px;
+  color: @fg-muted;
+}
+
+/* Close Button on Notifications */
+.close-button {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: @fg-muted;
+  text-shadow: none;
+  box-shadow: none;
+  padding: 4px;
+  margin: 4px;
+}
+
+.close-button:hover {
+  background: @red-color;
+  color: @bg-center;
+}
+
+/* Urgency Levels */
+.low,
+.urgency-low {
+  border-left: 4px solid @fg-muted;
+}
+
+.normal,
+.urgency-normal {
+  border-left: 4px solid @accent;
+}
+
+.critical,
+.urgency-critical {
+  border: 1px solid @red-color;
+  border-left: 4px solid @red-color;
+  background-color: alpha(@red-color, 0.15);
+}
+
+.notification-action {
+  background: @bg-noti;
+  border: 1px solid @border-color;
+  border-radius: 6px;
+  color: @fg-main;
+  margin: 4px;
+  padding: 4px;
+}
+
+.notification-action:hover {
+  background: @bg-noti-active;
+  border-color: @accent;
+  color: @accent;
+}

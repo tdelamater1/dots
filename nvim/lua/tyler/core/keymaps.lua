@@ -18,8 +18,8 @@ vim.g.mapleader = " "
 -- Normal --
 
 -- movement
-keymap("n", "<C-d>", "<C-d>zz", opts) -- window left
-keymap("n", "<C-u>", "<C-u>zz", opts) -- window left
+keymap("n", "<C-d>", "15jzz", opts) -- window left
+keymap("n", "<C-u>", "15kzz", opts) -- window left
 -- find
 keymap("n", "n", "nzz", opts) -- find next
 keymap("n", "N", "Nzz", opts) -- find previous

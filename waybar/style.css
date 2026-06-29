@@ -95,6 +95,7 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #custom-power,
+#custom-notification,
 #mpd {
     padding: 0 10px;
     color: #bbbbbb;
@@ -320,4 +321,19 @@ label:focus {
 
 #scratchpad.empty {
 	background-color: transparent;
+}
+
+#custom-notification {
+    font-family: "FontAwesome";
+}
+
+#custom-notification.notification {
+    color: #e06c75;
+}
+
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification,
+#custom-notification.dnd-inhibited-none,
+#custom-notification.dnd-inhibited-notification {
+    color: #c678dd;
 }

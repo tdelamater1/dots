@@ -33,7 +33,8 @@ exec swayidle -w before-sleep 'swaylock -c 1a1a1a'
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id copyq
-exec --no-startup-id dunst
+exec swaync
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
